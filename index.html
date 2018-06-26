@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>mainProject</title>
+  
+  
+  
+      <link rel="stylesheet" href="css/style.css">
+
+  
+</head>
+
+<body>
+
+  <html ng-app="VUWPortalApp">
+
+<head>
+  <meta charset="utf-8" />
+  <title>VUW Web Portal</title>
+  <script>
+    document.write('<base href="' + document.location + '" />');
+  </script>
+  <link rel="stylesheet" href="style.css" />
+  <script data-require="angular.js@1.4.x" src="https://code.angularjs.org/1.4.12/angular.js" data-semver="1.4.9"></script>
+  <script src="app.js"></script>
+</head>
+
+<body ng-controller="MainCtrl">
+  <!-- Login Form Start -->
+  <div class="loginBox" ng-hide="hideLogin">
+    <form>
+      <img src="https://cdn.eventfinda.co.nz/uploads/locations/transformed/241159-1272-34.jpg" width="450px">
+      <input class="textbox" type="text" ng-model="uName" title="username" placeholder="Input Username" required />
+      <input class="textbox" type="password" ng-model="pWord" title="password" placeholder="Input Password" required />
+      <p>
+        <input type="radio" name="usertype" ng-model="userType" value="student" required> Student
+        <input type="radio" name="usertype" ng-model="userType" value="lecturer"> Lecturer</p>
+      <button type="submit" class="loginbutton" ng-click="logIn()"> Sign In </button>
+      <p id="loginfeedback">{{loginFeedback}}</p>
+    </form>
+  </div>
+  <!-- Login Form End -->
+
+  <!--Log out Button -->
+  <button type="submit" class="logoutbutton" ng-show="loggedIn" ng-click="logOut()">Log Out</button>
+  <!-- Logout Button End -->
+
+  <!-- Student View -->
+  <div class="studentBox" ng-hide="hideStudentView">
+    <h1 id="nameHeader"> Welcome {{username}} </h1>
+    <br>
+    <img src="https://image.ibb.co/dki9sd/Student_View_Logo.png" width="200px">
+    <br>
+
+    <button type="submit" class="navBarButton" ng-click="navBarStudentCourses()">My Courses</button>
+    <button type="submit" class="navBarButton" ng-click="navBarStudentCourseDirectory()">Course Directory</button>
+    <button type="submit" class="navBarButton" ng-click="navBarStudentAssignments()">My Assignments</button>
+<!-- Code for Logout button -->
+    <button type="submit" class="logoutbutton" ng-show="loggedIn" ng-click="logOut()">Log Out</button>
+
+    <!-- Student View Ending -->
+
+    <!-- Creating Divs for each NavBar tab for the student -->
+    <div class="studentCourses" ng-hide="hideStudentCourses">
+      <p> When student clicks add from course Directory it appears here - they should then be able to remove it also</p>
+      <ul ng-repeat="attribute in courseAssociations">
+        <li id="courseHeader">{{filteredCourses.CourseID}}</li>
+      </ul>
+    </div>
+
+    <!-- When the logged in user is a 'Student' this is what courses are displayed to them -->
+    <div class="studentCourseDirectory" ng-hide="hideCourseDirectory">
+      <ul ng-repeat="attribute in courses">
+        <li id="courseHeader">{{attribute.ID}}, {{attribute.Name}} </li>
+        <li id="courseTimes"> {{attribute.Year}}, Trimester {{attribute.Trimester}}, {{attribute.LectureTimes}} </li>
+        <li id="courseDetails">{{attribute.Overview}} </li>
+        <button id=add class="w3-button w3-block">Add to My Courses - test</button>
+        <br>
+      </ul>
+
+    </div>
+    <!-- Student Assignments Section -->
+    <div class="studentAssignments" ng-hide="hideStudentAssignments">
+      <p> Students assignments show up here based off what courses they are enrolled in - Gives them the option to mark assignments as complete too.</p>
+    </div>
+
+  </div>
+
+  <!-- Logged in Lecturer View -->
+  <div class="staffBox" ng-hide="hideStaffView">
+    <h1 id="nameHeader"> Welcome {{username}} </h1>
+    <br>
+    <img src="https://image.ibb.co/hLaHdJ/Lecturer_View_logo.png" width="200px">
+    <br>
+
+    <button type="submit" class="navBarButton" ng-click="navBarStaffCourses()">My Courses</button>
+    <button type="submit" class="navBarButton" ng-click="navBarStaffCourseDirectory()">Course Directory</button>
+    <button type="submit" class="navBarButton" ng-click="navBarStaffAssignmentDirectory()">Course Assignments</button>
+
+    <br>
+    <br>
+
+    <!-- This is the logged in lecturers course directory -->
+    <div class="staffCourseDirectory" ng-hide="hideStaffCourseDirectory">
+      <!-- Create new Course Button Below -->
+      <input type="button" class="button" value="Create New Course" ng-click="newCourseShow()"</button>
+    <!-- Create new course button ends --> 
+      <table id="myTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Year</th>
+            <th>Trimester</th>
+            <th>Lecture Times</th>
+            <th>Course Description</th>
+            <th> Test </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="attribute in courses">
+            <td>{{attribute.ID}}</td>
+            <td>{{attribute.Name}}</td>
+            <td>{{attribute.Year}}</td>
+            <td>{{attribute.Trimester}}</td>
+            <td>{{attribute.LectureTimes}}</td>
+            <td>{{attribute.Overview}}</td>
+            <td> <input type="button" class="button" value="Delete" ng-click="deleteCourse($index)"> <input type="button" class="button" value="Modify" ng-click="modifyCourse()"> </td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      
+      
+ <!-- This is the code for the course Directory "ADD" button used only by Lecturers to add new courses to the Directory -->
+    <div class="newCourseShow" ng-hide="hideNewCourseShow">
+      <p id="MyCourses">Create a new Course</p>
+      <form id="newCourse">
+        <br>
+        <input type="text" id="newCourseText" class="newCourse" ng-model=newID name="newID" placeholder="Enter Course ID" required>
+        <br>
+        <input type="text" id="newCourseText" class="newCourse" ng-model=newName name="newName" placeholder="Enter Course Name" required>
+        <br>
+        <input type="text" id="newCourseText" class="newCourse" ng-model=newYear name="newYear" placeholder="Enter Course Year" required>
+        <br>
+        <input type="text" id="newCourseText" class="newCourse" ng-model=newTrimester name="newTrimester" placeholder="Enter Course Trimester" required>
+        <br>
+        <input type="text" id="newCourseText" class="newCourse" ng-model=newLectureTimes name="newLectureTimes" placeholder="Enter Lecture Times" required>
+        <br>
+        <input type="text" id="newCourseText" class="newCourse" ng-model=newOverview name="newOverview" placeholder="Enter Overview" required>
+        <br>
+        <ul>
+          <button type="submit" id=addCourseButton ng-click="createNewCourse()">Add New Course</button>
+          <input type="button" id=closeCreateCourse value="Close" ng-click="closeCreateCourse()">
+        </ul>
+      </form>
+    </div>
+   <!-- New Courses Button Ending --> 
+   <!-- Course Edit Section Code Below -->
+      <div  ng-hide="hideCourseEdit" >
+         <h1>You can edit course in here</h1>
+          <form id="editCourse">
+           
+
+              <input ng-model="modifyID" type="text" class="select" value="id" placeholder="New Course ID" >
+              
+
+              <input ng-model="modifyName" type="text" class="select" value="coursename" placeholder="New Course Name">
+              
+ 
+              <input ng-model="modifyLectureTimes" type="text" class="select" value="lecturetime" placeholder="New Lecture Times">
+              
+
+              <input ng-model="modifyYear" type="text" class="select" value="year" placeholder="New Course Year">
+                      
+
+              <input ng-model="modifyTrimester" type="text" class="select" value="trimester" placeholder="New Course Trimester">
+            
+
+              <input ng-model="modifyOverview" type="text" class="select" value="courseoverview" placeholder="New Course Overview">
+             
+            </form>
+            <br>
+              <button type="submit" ng-click="eidtass(course)">Save change</button>
+             
+              <button  ng-click="closeCourseEdit()">Close</button>
+            </div>
+
+<!-- Staff Assignments Section - Will add ability to add / delete -->
+    <div class="staffAssignmentDirectory" ng-hide="hideStaffAssignmentDirectory">
+      <p id="MyCourses">All Available Assignments:</p>
+      <ul ng-repeat="attribute in assignments">
+        <li id="courseHeader">{{attribute.Name}}</li>
+        <li id="courseDetails">{{attribute.Overview}}</li>
+      </ul>
+
+      <div>
+<!--Create a form for creating new assignments -->
+        <p>Create An Assignment:</p>
+        <form>
+          <input type="text" ng-model=newAssignmentID name="newAssignmentID" placeholder="AssignmentID" required>
+          <br>
+          <input type="text" ng-model=newName name="newName" placeholder="Name" required>
+          <br>
+          <input type="text" ng-model=newOverview name="newOverview" placeholder="Overview" required>
+          <br>
+          <input type="text" ng-model=newCourseID name="newCourseID" placeholder="CourseID" required>
+          <br>
+          <input type="text" ng-model=newDueDate name="newDueDate" placeholder="DueDate" required>
+          <br>
+          <ul>
+            <button type="submit" id=add ng-click="createNewAssignment()">Add New Assignment</button>
+          </ul>
+        </form>
+      </div>
+
+    </div>
+    <!-- Staff Assignments section ending -->
+
+</body>
+
+</html>
+  
+  
+
+    <script  src="js/index.js"></script>
+
+
+
+
+</body>
+
+</html>

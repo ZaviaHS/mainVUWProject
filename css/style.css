@@ -1,0 +1,267 @@
+/* Put your css in here */
+
+body {
+  font-family: Helvetica;
+  background-image:url("https://image.ibb.co/neCfTn/rutherford_house_3200x1800.jpg");
+  width:100%; 
+  text-align:center;
+  margin: 20px 0px 20px 0px; 
+    }
+
+/* Stop buttons from remaining highlighted after being pressed */
+button:focus {
+  outline: none;
+}
+
+#add {
+  font-size: 10px;
+  font-style: italic;
+  background: gray;
+  padding: 2.5px 5px 2.5px 5px;
+  text-decoration: none;
+  float:left;
+  width:140px;
+}
+
+#courseHeader {
+  font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
+  margin-left: 0;
+  text-align: left;
+  list-style-type: none;
+}
+
+#courseTimes {
+  font: 200 15px/1.5 Helvetica, Verdana, sans-serif;
+  color: navy;
+  margin-left: 0;
+  text-align: left;
+  list-style-type: none;
+}
+
+#courseDetails {
+  font: 200 12px/1.5 Helvetica, Verdana, sans-serif;
+  margin-left: 0;
+  text-align: left;
+  list-style-type: none;
+  
+}
+
+#loginfeedback {
+  color: red;
+}
+
+.loginbutton {
+	background-color: green;
+	border: 1px solid black;
+	border-radius: 3px;
+	border-bottom: 10px;
+	color: #fff;
+	font-size: 0.8em;
+	padding: 10px;
+	width: 266px;
+}
+
+.loginbutton:hover {
+	background-image: linear-gradient(#06c,#0040a5);
+}
+
+.logoutbutton {
+  
+	border: 1px solid black;
+	border-radius: 1px;
+	font-size: 0.8em;
+	padding: 10px;
+	position:fixed;
+  right:10px;
+  top:20px;
+}
+
+.logoutbutton:hover {
+	background-image: linear-gradient(#06c,#0040a5);
+}
+
+.textbox {
+  background:#ecf0f1;
+  border: #ccc 1px solid;
+  border-bottom: #ccc 2px solid;
+  border-color: green;
+  padding: 10px;
+  width:450px;
+  color:black;
+  margin-top:10px;
+  font-size:1em;
+  border-radius:4px;
+}
+
+.loginBox{
+width: 500px;
+position: relative;
+top: 150px;
+padding: 10px 50px 25px;
+border: 2px solid gray;
+border-radius: 1px;
+font-family: Bookman, URW Bookman L, serif;
+margin: 0px auto;
+background-color:white;
+}
+
+.studentBox{
+  background:white;
+  width: 90%;
+  border-radius:6px;
+  margin: 0 auto 0 auto;
+  padding:0px 0px 20px 0px;
+  border: black 4px solid; 
+}
+
+.staffBox{
+  background:white;
+  width:90%;
+  margin: 0 auto 0 auto;
+  padding:0px 0px 20px 0px;
+  border: black 2px solid; 
+}
+
+.navBarButton{
+  padding: 10px;
+  width: 150px;
+  border: light gray;
+  background: gray;
+  color: black;
+  webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+}
+
+.navBarButton:hover {
+    background-color: #e7e7e7;
+    color: black;
+}
+
+/* Below is the code for my lecturers course Directory */ 
+#myTable {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    border: 2px solid gray;
+}
+
+#myTable td, #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#myTable tr:nth-child(even){background-color: #f2f2f2;}
+
+#myTable tr:hover {background-color: #ddd;}
+
+#myTable th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
+#myTable {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 75%;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+#MyTable td, th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#myTable tr:nth-child(even){background-color: #f2f2f2;}
+
+#myTable tr:hover {background-color: #ddd;}
+
+#myTable th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
+
+#myInput {
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 60%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#addCourseButton {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 4px;
+    margin-right: 35px;
+    cursor: pointer;
+    padding: 10px 34px;
+    
+}
+
+/* below is Code for "Add New Courses" header */
+#MyCourses {
+  font-family: Lucida Console;
+  font-size: 20px;
+}
+
+#newCourseText {
+  background:#ecf0f1;
+  border: #ccc 1px solid;
+  border-bottom: #ccc 2px solid;
+  border-color: green;
+  padding: 10px;
+  width:450px;
+  color:black;
+  margin-top:10px;
+  font-size:1em;
+  border-radius:4px;
+}
+
+#nameHeader {
+  text-align: left;
+  margin-left: 15px;
+  font-family: Lucida Console;
+}
+
+#newCourse, #MyCourses {
+  margin-right: 700px;
+}
+input[type=text]  {
+  background:#ecf0f1;
+  border: #ccc 1px solid;
+  border-bottom: #ccc 2px solid;
+  border-color: green;
+  padding: 10px;
+  width:450px;
+  color:black;
+  margin-top:10px;
+  font-size:1em;
+  border-radius:4px;
+}
+input[type=button] {
+      background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 4px;
+    cursor: pointer;
+    padding: 10px 34px;
+}
+
+
