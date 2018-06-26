@@ -17,3 +17,5 @@ User Type - Student
 
 2. langsimo - abcde
 
+
+* Project still in an unfinished state.
