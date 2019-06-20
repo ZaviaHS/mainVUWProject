@@ -18,4 +18,4 @@ User Type - Student
 2. langsimo - abcde
 
 
-* Project still in an unfinished state.
+* Project still in an unfinished state due to unfortunate circumstances involving group contribution. All code available within this proejct is my own. Use as you please.
